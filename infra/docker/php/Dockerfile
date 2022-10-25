@@ -1,4 +1,5 @@
-FROM php:8.0-fpm-buster
+FROM node:16-alpine as node
+FROM php:8.1-fpm-buster
 LABEL maintainer="ucan-lab <yes@u-can.pro>"
 SHELL ["/bin/bash", "-oeux", "pipefail", "-c"]
 
@@ -26,6 +27,9 @@ RUN apt-get update && \
   docker-php-ext-enable redis && \
   composer config -g process-timeout 3600 && \
   composer config -g repos.packagist composer https://packagist.org
+
+COPY --from=node:16 /usr/local/bin /usr/local/bin
+COPY --from=node:16 /usr/local/lib /usr/local/lib
 
 COPY ./infra/docker/php/php-fpm.d/zzz-www.conf /usr/local/etc/php-fpm.d/zzz-www.conf
 COPY ./infra/docker/php/php.ini /usr/local/etc/php/php.ini
