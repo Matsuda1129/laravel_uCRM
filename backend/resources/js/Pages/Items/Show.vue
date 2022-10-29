@@ -17,10 +17,7 @@ const deleteItem = (id) => {
 
 <template>
     <div>
-        <Head
-            title="商品詳細
-        "
-        />
+        <Head title="商品詳細" />
         <AuthenticatedLayout>
             <template #header>
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight">商品詳細</h2>
@@ -86,7 +83,7 @@ const deleteItem = (id) => {
                                                 <Link
                                                     as="button"
                                                     :href="route('items.edit', { item: item.id })"
-                                                    class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg"
+                                                    class="flex mx-auto text-white bg-red-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg"
                                                     >編集する</Link
                                                 >
                                             </div>
